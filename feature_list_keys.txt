@@ -5,4 +5,4 @@ version - The current version the server is at, such as minecraft 1.4.5 etc...
 
 players_max - The max players from the server without the admin manually entering it
 players_online - Can retrieve the current amount of online players
-players_list - Can retrieve a list of the players online (Such as returning a list of their names
+players_list - Can retrieve a list of the players online (Such as returning a list of their names)
