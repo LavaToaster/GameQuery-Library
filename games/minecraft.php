@@ -1,8 +1,6 @@
 <?php
 class gameserver_minecraft extends gameserver
 {
-    public $game = "minecraft";
-
     const PREFIX = "\xFE\xFD";
     const CHALLENGE = "\x09";
     const QUERY = "\x00";    
@@ -79,12 +77,11 @@ class gameserver_minecraft extends gameserver
     */
     public function handshake(){
         $reply = $this->sendPacket(self::CHALLENGE); // IT's TIME TO D-D-D-DDDUEL
-
+        
         //Is it a valid?
         if($reply[0] != "\x09")
             return false;
-
-        //Huzzah We can continue        
+        //Huzzah we can continue        
 
         $token = 0;
         for($i = 5; $i < (strlen($reply) - 1); $i++)
@@ -102,7 +99,7 @@ class gameserver_minecraft extends gameserver
 
         $token_arr = array_map('chr', $token_arr);
 
-        $this->packet['challenge_packed'] =  $token_arr[0] . $token_arr[1] . $token_arr[2] . $token_arr[3];//$hex_arr[9].$hex_arr[10].$hex_arr[11].$hex_arr[12];
+        $this->packet['challenge_packed'] =  $token_arr[0] . $token_arr[1] . $token_arr[2] . $token_arr[3];
 
         return true;
     }
@@ -114,7 +111,7 @@ class gameserver_minecraft extends gameserver
 
     public function sendRawPacket($data, $prefix = true, $len = 2048){
         $data = self::PREFIX.$data;
-
+        
         $send = fwrite($this->socket, $data, strlen($data));
         $read = fread($this->socket, $len);
         return $read;
