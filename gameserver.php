@@ -18,7 +18,7 @@ abstract class gameserver implements gameserverInterface
     * 
     * @var array
     */
-    public $serverInfo = array();
+    protected $serverInfo = array();
     
     public $serverOnline = false;
     
@@ -27,15 +27,11 @@ abstract class gameserver implements gameserverInterface
     public $error = array();
     
     public $registry;
-    
-    public function __construct( ipsRegistry $registry )
-    {
-        $this->registry = $registry;
-    }
-    
+        
     public function setInfo(array $settings)
     {
         $this->serverInfo = $settings;
+        return $this;
     }
     
     /**
